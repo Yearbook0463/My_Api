@@ -17,11 +17,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-
 @Composable
 fun SearchScreen(onSearch: (String, String) -> Unit) {
     var artist by remember { mutableStateOf("") }
     var track by remember { mutableStateOf("") }
+
+    val isButtonEnabled = artist.isNotBlank() && track.isNotBlank()
 
     Column(
         modifier = Modifier
@@ -45,9 +46,11 @@ fun SearchScreen(onSearch: (String, String) -> Unit) {
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = { onSearch(artist, track) },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            enabled = isButtonEnabled // Enable or disable the button
         ) {
             Text("Search")
         }
     }
 }
+

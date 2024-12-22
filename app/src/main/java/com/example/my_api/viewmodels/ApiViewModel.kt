@@ -45,7 +45,8 @@ class ApiViewModel : ViewModel() {
                 } else {
                     _errorMessage.value = "Lyrics not found!"
                 }
-            } catch (e: Exception) {
+            }
+            catch (e: Exception) {
                 _errorMessage.value = "An error occurred: ${e.localizedMessage}"
             }
         }
